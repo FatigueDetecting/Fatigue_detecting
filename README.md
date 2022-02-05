@@ -36,7 +36,7 @@ Build Raspberry Pi 4b
     >$ sudo chmod 755 ./OpenCV-4-5-1.sh
     >$ ./OpenCV-4-5-1.sh
     >```
-- prepare camera 
+- prepare camera hw 
   1. >``` sudo raspi-config```
   2. >``` sudo vi /etc/modules-load.d/modules.conf```
   3. Add 'bcm2835-v4l2' after 'I2C'
