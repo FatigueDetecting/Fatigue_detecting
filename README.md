@@ -19,18 +19,16 @@ Build Raspberry Pi 4b
 - install opencv
 1.  step1 
       >```
-      >sudo rpi-eeprom-update 
-      > sudo rpi-eeprom-update -a 
-      > sudo reboot 
+      > $sudo rpi-eeprom-update 
+      > $sudo rpi-eeprom-update -a 
+      > $sudo reboot 
       >```
 2. step2 
     
      The next step is to increase your swap space. OpenCV needs a lot of memory to compile. The latest versions want to see a minimum of 6.5 GB of memory before building. Your swap space is limited to 2048 MByte by default. To exceed this 2048 MByte limit, you will need to increase this maximum in the /sbin/dphys-swapfile. Everything is demonstrated in the slideshow below.
     >```
-    ># edit the swap configuration
     >$ sudo nano /sbin/dphys-swapfile
     >$ sudo nano /etc/dphys-swapfile
-    ># reboot
     >$ sudo reboot
     >```
 3. step3 
