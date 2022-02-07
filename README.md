@@ -43,12 +43,10 @@ Build Raspberry Pi 4b
   1. >``` $sudo raspi-config```
   2. >``` $sudo vi /etc/modules-load.d/modules.conf```
   3. Add 'bcm2835-v4l2' after 'I2C'
-<<<<<<< HEAD
 
 - How to Drive an LCD Display
   https://github.com/goodtft/LCD-show
   1. >```git clone https://github.com/goodtft/LCD-show.git```
   2. >``` chmod -R 755 LCD-show```
   3. >```cd LCD-show/```
-=======
->>>>>>> 71a965e9bafb26d428071331fe4205a0c942191c
+
