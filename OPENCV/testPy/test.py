@@ -50,7 +50,7 @@ i = 0
 drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
 cap = cv2.VideoCapture(0)
 with mp_face_mesh.FaceMesh(
-    max_num_faces=1,
+    max_num_faces=10,
     refine_landmarks=True,
     min_detection_confidence=0.5,
     min_tracking_confidence=0.5) as face_mesh:
