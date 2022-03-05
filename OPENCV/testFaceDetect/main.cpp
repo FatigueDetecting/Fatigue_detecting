@@ -2,6 +2,7 @@
 //If you want more please email:2646699h@student.gla.ac.uk
 #include<iostream>
 #include <opencv2/opencv.hpp>
+#include <opencv2/gapi/imgproc.hpp>
 #include <vector>
 #include <dlib/opencv.h>
 #include <opencv2/highgui/highgui.hpp>
@@ -24,8 +25,6 @@ int main() {
 
         unsigned int count_blink = 0;                   //次数
 
-
-
     try{
                 shape_predictor pos_modle;
                 //loading files
@@ -34,10 +33,10 @@ int main() {
                 //object cap
                 VideoCapture cap(0);
                 cap.set(CAP_PROP_FRAME_WIDTH,320.0);
-                cap.set(CAP_PROP_BUFFERSIZE,0);
+                cap.set(CAP_PROP_BUFFERSIZE,1);
                 cap.set(CAP_PROP_FRAME_HEIGHT,240.0);
                 cap.set(CAP_PROP_FOURCC,cv::VideoWriter::fourcc('M','J','P','G'));
-
+                namedWindow("dlib_detect",WINDOW_FREERATIO);
                 //open camera
                 if (!cap.isOpened()) {
                         printf("Unable to connect a camera");
@@ -48,14 +47,23 @@ int main() {
 
                 while (waitKey(1) != 27) {
                         Mat temp;
-                        Mat temp_small;
+                       // Mat temp_small;
+                        Mat temp_gray;
                         cap >> temp;
-                        cv::resize(temp, temp_small, cv::Size(), 1.0 / FACE_DOWNSAMPLE_RATIO, 1.0 / FACE_DOWNSAMPLE_RATIO);       
-                        //tramsform to dlib BGR format
-                        cv_image<bgr_pixel> cimg_small(temp_small);
-                        cv_image<bgr_pixel> cimg(temp);
+
+                        cvtColor( temp , temp_gray , COLOR_BGR2GRAY  );
+
+                        //直方图均衡
+                        equalizeHist( temp_gray, temp_gray );
+                        //cv::resize(temp_gray, temp_small, cv::Size(), 1.0 / FACE_DOWNSAMPLE_RATIO, 1.0 / FACE_DOWNSAMPLE_RATIO);
+                        cv_image<unsigned char> cimg(temp_gray);
+                        //Mat转cv_image<bgr_pixel>
+
+                        cv_image<bgr_pixel> temp1 (temp);
+                        // cout<<"temp.gray"<<temp_gray.type()<<endl;
+                        // cout<<"temp.depth"<<temp.type()<<endl;
                     if ( count_blink % SKIP_FRAMES == 0 ){
-                        std::vector<dlib::rectangle> faces = detector(cimg_small);
+                        std::vector<dlib::rectangle> faces = detector(cimg);
                         std::vector<full_object_detection> shapes;
 
                         unsigned int faceNumber = faces.size();   //获取容器中向量的个数即人脸的个数
@@ -69,10 +77,10 @@ int main() {
                                         for (int i = 0; i < 68; i++)
                                         {
                                                 //用来画特征值的点
-                                                cv::circle(temp, cvPoint(shapes[j].part(i).x()*FACE_DOWNSAMPLE_RATIO, shapes[j].part(i).y()*FACE_DOWNSAMPLE_RATIO), 1, cv::Scalar(0, 0, 255), -1);
+                                                cv::circle(temp, cvPoint(shapes[j].part(i).x(), shapes[j].part(i).y()), 1, cv::Scalar(0, 0, 255), -1);
                                                 //参数说明 图像 圆心 线条宽度 颜色 线的类型
                                                 //显示数字
-                                                cv::putText(temp, to_string(i), cvPoint(shapes[0].part(i).x()*FACE_DOWNSAMPLE_RATIO, shapes[0].part(i).y()*FACE_DOWNSAMPLE_RATIO), cv::FONT_HERSHEY_PLAIN, 1, cv::Scalar(0, 0, 255));
+                                                cv::putText(temp, to_string(i), cvPoint(shapes[0].part(i).x(), shapes[0].part(i).y()), cv::FONT_HERSHEY_PLAIN, 1, cv::Scalar(0, 0, 255));
 
                                         }
                                 }
@@ -80,8 +88,8 @@ int main() {
                                 //左眼
 
                                 // //点36的坐标
-                                // unsigned int x_36 = shapes[0].part(36).x();
-                                // unsigned int y_36 = shapes[0].part(36).y();
+                                cout<<"point:36x"<<shapes[0].part(36).x()<<endl;
+                                cout<<"point:36y"<<shapes[0].part(36).y()<<endl;
 
                                 // //点37的坐标
                                 // unsigned int x_37 = shapes[0].part(37).x();
@@ -234,7 +242,7 @@ int main() {
 
 
 
-                                //_gcvt_s(count_blink_text, count_blink, 10);   //把hight_left_eye从float类型转化成字符串类型
+                                
 
                                 //putText(temp, count_blink_text, Point(10, 100), FONT_HERSHEY_COMPLEX, 1.0, Scalar(0, 0, 255), 1, LINE_AA);
 
@@ -242,7 +250,8 @@ int main() {
                     }
                         count_blink ++;
                         //Display it all on the screen
-                        cv::imshow("dlib_detect", temp);
+                       cv::imshow("dlib_detect", temp);
+                       // cv::imshow("dlib_detect1", temp_gray);
 
                 }
 

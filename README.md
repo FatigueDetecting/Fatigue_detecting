@@ -2,10 +2,11 @@
 
 
 
-- 1.HOG
-- 2.ERT
-- 3.CNN
-
+- 1.HOG compelete
+- 2.ERT no use 
+- 3.CNN openvino
+- 4.split frame
+- 5.hyper thread 
 Build Raspberry Pi 4b
 - environment
   1. After testing, the fulleye version cannot detect the camera well when using opencv, so the bluster version is used.
@@ -50,3 +51,5 @@ Build Raspberry Pi 4b
   2. >``` chmod -R 755 LCD-show```
   3. >```cd LCD-show/```
 
+- Enjoy it!
+  
