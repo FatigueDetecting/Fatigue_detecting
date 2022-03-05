@@ -52,4 +52,4 @@ Build Raspberry Pi 4b
   3. >```cd LCD-show/```
 
 - Enjoy it!
-  
+  ![](https://github.com/FatigueDetecting/Fatigue_detecting/blob/main/pic1.png)
