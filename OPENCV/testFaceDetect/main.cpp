@@ -43,12 +43,12 @@ int main() {
                         return 1;
                 }
                 frontal_face_detector detector = get_frontal_face_detector();
-
-
-                while (waitKey(1) != 27) {
                         Mat temp;
                        // Mat temp_small;
                         Mat temp_gray;
+
+                while (waitKey(1) != 27) {
+
                         cap >> temp;
 
                         cvtColor( temp , temp_gray , COLOR_BGR2GRAY  );
@@ -251,7 +251,6 @@ int main() {
                         count_blink ++;
                         //Display it all on the screen
                        cv::imshow("dlib_detect", temp);
-                       // cv::imshow("dlib_detect1", temp_gray);
 
                 }
 
