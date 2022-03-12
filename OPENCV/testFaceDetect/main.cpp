@@ -31,6 +31,7 @@ int main() {
                 deserialize("shape_predictor_68_face_landmarks.dat") >> pos_modle;
 
                 //object cap
+                //VideoCapture cap("testvideo.h264");
                 VideoCapture cap(0);
                 cap.set(CAP_PROP_FRAME_WIDTH,320.0);
                 cap.set(CAP_PROP_BUFFERSIZE,1);
