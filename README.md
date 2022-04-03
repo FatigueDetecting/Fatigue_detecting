@@ -1,12 +1,10 @@
 # Fatigue_detecting
 
 
-
-- 1.HOG compelete
-- 2.ERT no use 
-- 3.CNN openvino
-- 4.split frame
-- 5.hyper thread 
+- 1.HOG Finish
+- 2.NCNN Finish
+- 3.PFLD-NCNN openvino
+- 4.hyper thread  Finish
 Build Raspberry Pi 4b
 - environment
   1. After testing, the fulleye version cannot detect the camera well when using opencv, so the bluster version is used.
