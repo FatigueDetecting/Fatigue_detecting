@@ -23,7 +23,7 @@ using namespace cv;
 
 float SWink(double pointX[] ,double pointY[]) {
     float StandardWink = 0;
-    StandardWink = fabs(( pointY[37] + pointY[38]) - (pointY[41] + pointY[42])) / (2 * fabs(pointX[39] - pointX[36]));
+    StandardWink = fabs(( pointY[37] + pointY[38]) - (pointY[41] + pointY[40])) / (2 * fabs(pointX[39] - pointX[36]));
     return StandardWink;
 }
 
@@ -33,9 +33,9 @@ float SYaw(double pointX[], double pointY[]) {
     return StandardYaw;
 }
 
-float SNode(double pointY[]) {
+float SNode(double pointY[], double pointX[]) {
     float StandardNode = 0;
-    StandardNode =  pointY[33];
+    StandardNode =  fabs((pointY[30]-pointY[27])/(pointX[54]-pointX[48]));
     return StandardNode;
 }
 
@@ -44,30 +44,32 @@ bool Wink(double pointX[], double pointY[], float StandardWink) {
     float LowerEyebrow = 0;
     float EyeVertical = 0;
     float EyeHorizontal = 0;
-    int WinkRatio = 0;
+    bool WinkRatio = 0;
 
     UpperEyebrow = (pointY[37] +  pointY[38]);
-    LowerEyebrow = (pointY[41] + pointY[42]);
+    LowerEyebrow = (pointY[41] + pointY[40]);
     EyeVertical = fabs(UpperEyebrow - LowerEyebrow) / 2;
     EyeHorizontal = fabs(pointX[39] - pointX[36]);
-    WinkRatio = ((EyeVertical / EyeHorizontal) > StandardWink);  //大于阈值为正常，小于阈值为疲劳眨眼
+    WinkRatio = ((EyeVertical / EyeHorizontal) >= StandardWink);  //大于阈值为正常，小于阈值为疲劳眨眼
     return WinkRatio;
 };
 
 
 bool Yaw(double pointX[], double pointY[], float StandardYaw) {
     float k = 0, MNSO = 0;
-    float YawRatio;
-    k = fabs((pointY[31] + pointY[35]) / 2 - pointY[37]);
+    bool YawRatio;
+    k = fabs((pointY[31] + pointY[35]) / 2 - pointY[57]);
     MNSO = fabs((pointY[31] + pointY[35]) / 2 - (pointY[48] + pointY[54]) / 2);
-    YawRatio = fabs(k / MNSO) < StandardYaw;	//小于阈值为正常，大于阈值为疲劳打哈欠
+    YawRatio = fabs(k / MNSO) <= StandardYaw;	//小于阈值为正常，大于阈值为疲劳打哈欠
     return YawRatio;
 };
 
-bool NNode(double pointY[], float StandardNode) {
-    float r = 0, Pich = 0;
-    float NodeRatio = 0;
-    NodeRatio = fabs((pointY[33] - StandardNode) / StandardNode) > 0.2;	//鼻尖连点
+bool NNode(double pointY[],double pointX[], float StandardNode) {
+    
+    bool NodeRatio = 0;
+    float TempNode = 0;
+    TempNode = fabs((pointY[30]-pointY[27])/(pointX[54]-pointX[48]));
+    NodeRatio = fabs((TempNode-StandardNode) / StandardNode) >= 0.3;
     return NodeRatio;
 };
 
@@ -86,15 +88,17 @@ int main() {
         bool YawDetermine;
         bool WinkDetermine;
         string url = R"(http://103.199.161.254/Content/bbcworld/Live/Channel(BBCworld)/index.m3u8)";
-
-
+        
+        float WinkOnetime = 0;
+        float YawOnetime = 0;
+        float NodeOnetime = 0;
     try{
                 shape_predictor pos_modle;
                 //loading files
                 deserialize("shape_predictor_68_face_landmarks.dat") >> pos_modle;
 
                 //object cap
-                VideoCapture cap("testvideo.h264");
+                VideoCapture cap(0);
                 cap.set(CAP_PROP_FRAME_WIDTH,320.0);
                 cap.set(CAP_PROP_BUFFERSIZE,1);
                 cap.set(CAP_PROP_FRAME_HEIGHT,240.0);
@@ -149,57 +153,81 @@ int main() {
                                                 pointY[i] = shapes[0].part(i).y();
                                         }
                                 }
-                                if (count_blink == 1) {
+                    //--------------------------The standard part------------------------------------------------------------           
+                                if (count_blink == 0) {
 
-                                        StandardNode = SNode(pointY);
+                                        StandardNode = SNode(pointY,pointX);
                                         StandardWink = SWink(pointX,pointY);
                                         StandardYaw =  SYaw(pointX, pointY);
                                 }
+                                //else{
+                                        
+                                        //StandardWink = max(StandardWink,SWink(pointX,pointY));
+                                        //StandardYaw = max(StandardYaw,SYaw(pointX, pointY));
+                                //}
                     //--------------------------点头部分连续五次发生----------------------------------------------------
-                                if (NNode(pointY, StandardNode) == 1) {
+                      NodeOnetime  = fabs((fabs((pointY[30]-pointY[27])/(pointX[54]-pointX[48]))- StandardNode) / StandardNode);
+                                if (NNode(pointY, pointX, StandardNode) == true) {
+                                        
                                         SumNode = SumNode + 1;
-                                        if (SumNode > 5) {
+                                        if (SumNode > 4) {
                                                 NodeDetermine = true;
-                                        }       
+                                        }   
+                                        else {
+                                                NodeDetermine = false;
+                                        }    
                                 }
                                 else {
                                         SumNode = 0;
-                                        NodeDetermine = false;
+                                       
                                 }
                     //--------------------------------------------------------------------------------------------------------
-                    //--------------------------眨眼部分连续十次发生--------------------------------------------------------
-                    if (Wink(pointX,pointY, StandardWink) == 1) {
+                    //--------------------------眨眼部分连续4次发生--------------------------------------------------------
+                    WinkOnetime = fabs(( pointY[37] + pointY[38]) - (pointY[41] + pointY[40])) / (2 * fabs(pointX[39] - pointX[36]));
+                    if (Wink(pointX,pointY, StandardWink) == false) {
                         SumWink = SumWink + 1;
-                        if (SumWink > 8) {
+                        if (SumWink > 4) {
                             WinkDetermine = true;
                         }
+                        else {
+                            WinkDetermine = false;
+                        }   
                     }
                     else {
                         SumNode = 0;
-                        WinkDetermine = false;
+                        
                     }
 
                     //------------------------------------------------------------------------------------------------------
-                    //-------------------------哈欠连续二十次发生----------------------------------------------------------
-                    if (Yaw(pointX, pointY, StandardYaw) == 1) {
+                    //-------------------------哈欠连续4次发生----------------------------------------------------------
+                    YawOnetime = fabs((pointY[31] + pointY[35]) / 2 - pointY[57]) / fabs((pointY[31] + pointY[35]) / 2 - (pointY[48] + pointY[54]) / 2);
+                    if (Yaw(pointX, pointY, StandardYaw) == false) {
                         SumYaw = SumYaw + 1;
-                        if (SumYaw > 10) {
+                        if (SumYaw > 4) {
                             YawDetermine = true;
+                        }
+                        else{
+                            YawDetermine = false;
                         }
                     }
                     else {
                         SumYaw = 0;
-                        YawDetermine = false;
+                        
                     }
                                 //左眼
 
                                 // //点36的坐标
                                 cout<<"point:36x"<<shapes[0].part(36).x()<<endl;
                                 cout<<"point:36y"<<shapes[0].part(36).y()<<endl;
-
-                        cout << "Wink Fatigue is" << WinkDetermine << endl;
-                        cout << "Yaw Fatigue is" << YawDetermine << endl;
-                        cout << "Node Fatigue is" << NodeDetermine << endl;
+                       cout << "nodetandard: "<<StandardNode<< endl;
+                       cout << "NodeOnetime"<<NodeOnetime << endl;
+                       cout << "WinkOnetime" << WinkOnetime << endl;
+                       cout << "StandardWINK" << StandardWink << endl;
+                        cout << "YawStandard: "<<StandardYaw << endl;
+                        cout << "YawOnetime is : " << YawOnetime << endl;
+                        cout << "Wink Fatigue is "  << WinkDetermine << endl;
+                        cout << "Yaw Fatigue is " << YawDetermine << endl;
+                        cout << "Node Fatigue is "  << NodeDetermine << endl;
                                 // //点37的坐标
                                 // unsigned int x_37 = shapes[0].part(37).x();
                                 // unsigned int y_37 = shapes[0].part(37).y();
