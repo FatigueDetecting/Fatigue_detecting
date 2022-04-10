@@ -175,11 +175,11 @@ class Detect
 
 	public:
 		
-		//输入的结构体与输出的结构相同：FLag, 时间戳，68点矩阵
+		//输入的结构体：FLag,，68点矩阵
 		returnVector inputData;
 		int outputData;
 		
-		//收到结构体，并输出状态与时间戳
+		//收到结构体，并输出状态
 		int PointToMatrix(returnVector inputData) {
 			command = inputData.flags;
 			for (int num = 0; num < 68; num++) {
