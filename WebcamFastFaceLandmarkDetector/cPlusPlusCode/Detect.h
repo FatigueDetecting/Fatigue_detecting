@@ -11,8 +11,6 @@ class Detect
 		int Num2Yaw = 0;
 		int Num2Node = 0;
 		int Statement[3] = { 0,0,0};
-
-	public: 
 		float pointX[68];
 		float pointY[68];
 		float StandardWink = 0;
@@ -21,15 +19,17 @@ class Detect
 		float DetWink = 0;
 		float DetNode = 0;
 		float DetYaw = 0;
-		
-		//转换数据
-		void PointToMatrix(struct shape) {
-			for (int num = 0; num < 68; num++) {
-				pointX[num] = shape.part(num).x();
-				pointY[num] = shape.part(num).y();
-			}
-		
+		int command;
+		struct returnVector
+		{
+			int flags;
+			//int timestamps;
+			std::vector<dlib::full_object_detection> shapesVectors;
 		};
+		
+		int flag_detects;
+		//int timestamp_detects;
+
 		
 		//眨眼标准 command == 0为标定模式 command == 0为测试模式
 		float WinkStandard(double pointX[], double pointY[], int command) {
@@ -41,25 +41,25 @@ class Detect
 			}
 			StandardWink = StandardWink / 5;
 			return StandardWink;
-		
+
 		};
-		
+
 		//哈欠标准
 		float YawStandard(double pointY[], int command) {
 			float StandardYaw = 0;
 			if (command == 0) {
-				while(NumYaw < 5){
-				StandardYaw = fabs((pointY[31] + pointY[35]) / 2 - pointY[37]) / fabs((pointY[31] + pointY[35]) / 2 - (pointY[48] + pointY[54]) / 2) + StandardYaw;
-				NumYaw = NumYaw + 1;
+				while (NumYaw < 5) {
+					StandardYaw = fabs((pointY[31] + pointY[35]) / 2 - pointY[37]) / fabs((pointY[31] + pointY[35]) / 2 - (pointY[48] + pointY[54]) / 2) + StandardYaw;
+					NumYaw = NumYaw + 1;
 				}
 			}
 			StandardYaw = StandardYaw / 5;
 			return StandardYaw;
 		};
-		
+
 		//点头标准
 		float NodeStandard(double pointX[], double pointY[], int command) {
-			if (command == 0){
+			if (command == 0) {
 				while (NumNode < 5) {
 					StandardNode = fabs((pointY[30] - pointY[27]) / (pointX[54] - pointX[48])) + StandardNode;
 					NumNode = NumNode + 1;
@@ -72,7 +72,7 @@ class Detect
 		//眨眼检测(正在修改)    输出0意味着为正常， 如果输出为1则意味着为疲劳
 		int WinkDetect(double pointX[], double pointY[], int command, float StandardWink) {
 			if (command == 2 || 4 || 5 || 7) {
-				if (fabs((pointY[37] + pointY[38]) - (pointY[41] + pointY[40])) / (2 * fabs(pointX[39] - pointX[36])) < StandardWink){
+				if (fabs((pointY[37] + pointY[38]) - (pointY[41] + pointY[40])) / (2 * fabs(pointX[39] - pointX[36])) < StandardWink) {
 					Num2Wink = Num2Wink + 1;
 				}
 				else {
@@ -86,13 +86,13 @@ class Detect
 					DetWink = 0;
 				}
 			}
-			else { 
-				 DetWink = 0; 
+			else {
+				DetWink = 0;
 			}
 			return DetWink;
 		};
 		//哈欠检测  ---------- 疲劳现象消失后，均会回归0
-		int YawDetect(double pointX[], double pointY[], float StandardYaw,int command) {
+		int YawDetect(double pointX[], double pointY[], float StandardYaw, int command) {
 			if (command == 1 || 4 || 6 || 7) {
 				if ((fabs((pointY[31] + pointY[35]) / 2 - pointY[37]) / fabs((pointY[31] + pointY[35]) / 2 - (pointY[48] + pointY[54]) / 2)) > StandardYaw) {
 					Num2Yaw = Num2Yaw + 1;
@@ -116,7 +116,7 @@ class Detect
 		//点头检测
 		int NodeDetect(double pointX[], double pointY[], int command, float StandardNode) {
 			if (command = 3 || 5 || 6 || 7) {
-				if (fabs((pointY[30] - pointY[27]) / (pointX[54] - pointX[48]))/StandardNode > 0.3) {
+				if (fabs((pointY[30] - pointY[27]) / (pointX[54] - pointX[48])) / StandardNode > 0.3) {
 					Num2Node = Num2Node + 1;
 				}
 				else {
@@ -137,32 +137,65 @@ class Detect
 		};
 		
 		int CommandReturn(int DetWink, int DetYaw, int DetNode) {
-			switch ( DetWink + DetYaw + DetNode ) {
+			switch (DetWink + DetYaw + DetNode) {
 			case 0:
-				return 0;
+				flag_detects = 0;
+				return flag_detects;
 			case 1:
 				if (DetWink == 1) {
-					return 2;
+					flag_detects = 2;
+					return flag_detects;
 				}
 				else if (DetYaw == 1) {
-					return 1;
+					flag_detects = 1;
+					return flag_detects;
 				}
 				else {
-					return 3;
+					flag_detects = 3;
+					return flag_detects;
 				}
 			case 2:
 				if (DetWink == 0) {
-					return 6;
+					flag_detects = 6;
+					return flag_detects;
 				}
 				else if (DetYaw == 0) {
-					return 5;
+					flag_detects = 5;
+					return flag_detects;
 				}
 				else {
-					return 4;
+					flag_detects = 4;
+					return flag_detects;
 				}
 			case 3:
-				return 7;
+				flag_detects = 7;
+				return flag_detects;
 			}
 		}
+
+	public:
+		
+		//输入的结构体与输出的结构相同：FLag, 时间戳，68点矩阵
+		returnVector inputData;
+		int outputData;
+		
+		//收到结构体，并输出状态与时间戳
+		int PointToMatrix(returnVector inputData) {
+			command = inputData.flags;
+			for (int num = 0; num < 68; num++) {
+				pointX[num] = inputData.shapesVectors.part(num).x();
+				pointY[num] = inputData.shapesVectors.part(num).y();
+			}
+			outputData = flag_detects;
+			return outputData;
+
+		};
+			
 };
+
+int Detect::reciver(std::vector<returnVector> return_vector) {
+		flag_detects = return_vector[0].flags;
+		//timestamp_detects = return_vector[0].timestamps; 这里我已不需要时间戳
+		shapesVector_detects = return_vector[0].shapesVectors;
+}
 
