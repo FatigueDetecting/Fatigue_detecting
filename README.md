@@ -2,8 +2,8 @@
 
 
 - 1.HOG Finish
-- 2.NCNN Finish
-- 3.PFLD-NCNN openvino
+- 2.Dlib detect landmark Finish
+- 3.libfacedetection Finish
 - 4.hyper thread  Finish
 Build Raspberry Pi 4b
 - environment
