@@ -10,16 +10,16 @@ class Detect
 		int Num2Wink = 0;
 		int Num2Yaw = 0;
 		int Num2Node = 0;
-		int Statement[3] = { 0,0,0};
-		float pointX[68];
-		float pointY[68];
+		//int Statement[3] = { 0,0,0};
+		double pointX[68];
+		double pointY[68];
 		float StandardWink = 0;
-		float StandYaw = 0;
+		float StandardYaw = 0;
 		float StandardNode = 0;
 		float DetWink = 0;
 		float DetNode = 0;
 		float DetYaw = 0;
-		int command;
+		int command = 0;
 		struct returnVector
 		{
 			int flags;
@@ -92,7 +92,7 @@ class Detect
 			return DetWink;
 		};
 		//哈欠检测  ---------- 疲劳现象消失后，均会回归0
-		int YawDetect(double pointX[], double pointY[], float StandardYaw, int command) {
+		int YawDetect(double pointY[], float StandardYaw, int command) {
 			if (command == 1 || 4 || 6 || 7) {
 				if ((fabs((pointY[31] + pointY[35]) / 2 - pointY[37]) / fabs((pointY[31] + pointY[35]) / 2 - (pointY[48] + pointY[54]) / 2)) > StandardYaw) {
 					Num2Yaw = Num2Yaw + 1;
@@ -186,6 +186,15 @@ class Detect
 				pointX[num] = inputData.shapesVectors.part(num).x();
 				pointY[num] = inputData.shapesVectors.part(num).y();
 			}
+
+			StandardWink = WinkStandard(pointX, pointY, command);
+			StandardYaw = YawStandard(pointY,command);
+			StandardNode = NodeStandard(pointX,pointY, command);
+			DetWink = WinkDetect(pointX, pointY,command,StandardWink);
+			DetYaw =  YawDetect(pointY, command, StandardWink);
+			DetNode = NodeDetect(pointX, pointY, command, StandardNode);
+
+			flag_detects = CommandReturn(DetWink, DetYaw, DetNode);
 			outputData = flag_detects;
 			return outputData;
 
