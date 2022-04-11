@@ -205,11 +205,10 @@ int faceGet::sendFace(CRingBuffer<dlib::full_object_detection> &shape1,int flags
     timestamp = getTimeStamp();
     shape1_length = shape1.GetLength();
 
-
     if (shape1_length == 0)
     {
         // Delay(1000);
-        return 0;
+        return 100;
     }
     else
     {

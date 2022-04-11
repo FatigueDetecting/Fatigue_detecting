@@ -4,8 +4,8 @@
 int main(int argc, char **argv){
     // TickMeter timer;
 
-    // Mat frame5;
-    Mat frame5 = imread("../noSignal.jpeg");
+    Mat frame5;
+   
     faceGet ca;
     VideoCapture cap(0);
     cap.set(CAP_PROP_BUFFERSIZE,0);
@@ -23,12 +23,15 @@ int main(int argc, char **argv){
     // // //automatic detact
     std::thread tr1(&faceGet::frame_read, ca, std::ref(buff),1, std::ref(cap), std::ref(frame5), std::ref(shap1)); // pass by value
     tr1.detach();
-
-
+    int test;
+    frame5 = imread("../noSignal.jpeg");
     while (waitKey(1) != 27)
     {
         //测试Qt5 至 类调用
         // ca.returnFrame(std::ref(shap1),2);
+        test = ca.sendFace (std::ref(shap1),2);
+        if(test != 100 && test != 0)
+            cout<<test<<endl;
         cv::imshow("dlib_detect", frame5);
     }
 
