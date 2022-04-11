@@ -8,7 +8,7 @@ using namespace cv;
 using namespace dlib;
 CRingBuffer<Mat> buff(sizes);
 CRingBuffer<dlib::full_object_detection> shap1(30);
-
+Detect de;
 // status:1:2:3:4:5:6
 //
 //
@@ -17,10 +17,11 @@ CRingBuffer<dlib::full_object_detection> shap1(30);
 class faceGet
 {
 public:
-    int returnFrame(CRingBuffer<dlib::full_object_detection>,int);
+    int returnFrame(CRingBuffer<dlib::full_object_detection>& ,int);
     std::vector<returnVector> sendFace4Test(CRingBuffer<dlib::full_object_detection> &shape1);
     void frame_write(cv::VideoCapture &cap, CRingBuffer<Mat> &buff);
     void frame_read(CRingBuffer<Mat> &buff, int num, VideoCapture &cap, Mat &result_image, CRingBuffer<dlib::full_object_detection> &shap1);
+    int sendFace(CRingBuffer<dlib::full_object_detection> &shape1,int);
     void Delay(int time) // time*1000为秒数
     {
         clock_t now = clock();
@@ -29,7 +30,6 @@ public:
 private:
     dlib::full_object_detection shapesFace;
     int shape1_length;
-    int sendFace(CRingBuffer<dlib::full_object_detection> &shape1);
     std::time_t getTimeStamp();
     Detect de;
 };
@@ -118,6 +118,7 @@ void faceGet::frame_read(CRingBuffer<Mat> &buff, int num, VideoCapture &cap, Mat
                     cv::rectangle(result_image, Rect(x, y, w, h), Scalar(0, 255, 0), 2);
 
                     cv::Mat face = result_image(cv::Rect(x, y, w, h));
+                    // cout<<"this is a breakPoint of resize"<<endl;
                     cv::resize(face, face, cv::Size(112, 112));
                     cv::cvtColor(face, temp_gray, COLOR_BGR2GRAY);
                     equalizeHist(temp_gray, temp_gray);
@@ -197,29 +198,36 @@ void faceGet::frame_write(cv::VideoCapture &cap, CRingBuffer<Mat> &buff)
 }
 // arg :buffer_name
 // return struct flag timestamp faceDetect
-int faceGet::sendFace(CRingBuffer<dlib::full_object_detection> &shape1)
+int faceGet::sendFace(CRingBuffer<dlib::full_object_detection> &shape1,int flags)
 {
     std::vector<full_object_detection> shapesVector;
     returnVector rv;
     timestamp = getTimeStamp();
     shape1_length = shape1.GetLength();
+
+
     if (shape1_length == 0)
     {
-        Delay(1000);
-        return 1;
+        // Delay(1000);
+        return 0;
     }
     else
     {
         shape1.ReadData(&shapesFace);
+        if (shapesFace.part(36).x() > 112 && shapesFace.part(36).x() < 0)
+        {
+            // return shapesFace.part(36).x();
+            return 101;
+        }
         shapesVector.clear();
         shapesVector.push_back(shapesFace);
         return_vector.clear();
-        rv.flags = flag;
-        rv.timestamps = timestamp;
+        rv.flags = flags;
+        // rv.timestamps = timestamp;
         rv.shapesVectors = shapesVector;
         return_vector.push_back(rv);
-        cout<<rv.timestamps<<endl;
-
+        // cout<<rv.timestamps<<endl;
+        faceResult = de.reciver(return_vector);
         return faceResult;
     }
 }
@@ -277,11 +285,8 @@ std::vector<returnVector> faceGet::sendFace4Test(CRingBuffer<dlib::full_object_d
 // arg:buff_name,frame,flag
 // return status
 //*frame
-int faceGet::returnFrame(CRingBuffer<dlib::full_object_detection> shape_send,int flags = 9)
+int faceGet::returnFrame(CRingBuffer<dlib::full_object_detection>& shape_send,int flags)
 {
-    int status = -1;
-    flag = flags;
-    status = sendFace(shape_send);
-    cout << flags << endl;
+    status = sendFace(shape_send,flags);
     return status;
 }
