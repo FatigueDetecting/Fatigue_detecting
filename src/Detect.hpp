@@ -10,27 +10,22 @@ class Detect
 		int Num2Wink = 0;
 		int Num2Yaw = 0;
 		int Num2Node = 0;
-		int Statement[3] = { 0,0,0};
-		float pointX[68];
-		float pointY[68];
+		// int Statement[3] = { 0,0,0};
+		double pointX[68];
+		double pointY[68];
 		float StandardWink = 0;
-		float StandYaw = 0;
+		float StandardYaw = 0;
 		float StandardNode = 0;
 		float DetWink = 0;
 		float DetNode = 0;
 		float DetYaw = 0;
-		int command;
+		int command = 0;
 		struct return_vector
 		{
 			int flags;
-			//int timestamps;
 			std::vector<dlib::full_object_detection> shapesVectors;
 		};
-		
 		int flag_detects;
-		//int timestamp_detects;
-
-		
 		//眨眼标准 command == 0为标定模式 command == 0为测试模式
 		float WinkStandard(double pointX[], double pointY[], int command) {
 			if (command == 0) {
@@ -92,7 +87,7 @@ class Detect
 			return DetWink;
 		};
 		//哈欠检测  ---------- 疲劳现象消失后，均会回归0
-		int YawDetect(double pointX[], double pointY[], float StandardYaw, int command) {
+		int YawDetect(double pointY[], float StandardYaw, int command) {
 			if (command == 1 || 4 || 6 || 7) {
 				if ((fabs((pointY[31] + pointY[35]) / 2 - pointY[37]) / fabs((pointY[31] + pointY[35]) / 2 - (pointY[48] + pointY[54]) / 2)) > StandardYaw) {
 					Num2Yaw = Num2Yaw + 1;
@@ -183,21 +178,26 @@ class Detect
 		//输入的结构体：FLag,，68点矩阵
 		// returnVector inputData;
 		int outputData;
-		// std::vector<full_object_detection> inputData;
 		std::vector<dlib::full_object_detection> shapesVector_detects;
 		int reciver (std::vector<returnVector>) ;
 		int flag_detect1;
 		//收到结构体，并输出状态
 		int PointToMatrix(dlib::full_object_detection inputData) {
-			// command = inputData.flags;
 			for (int num = 0; num < 68; num++) {
 				pointX[num] = inputData.part(num).x();
 				pointY[num] = inputData.part(num).y();
 			}
+			StandardWink = WinkStandard(pointX, pointY, command);
+			StandardYaw = YawStandard(pointY,command);
+			StandardNode = NodeStandard(pointX,pointY, command);
 
-			flag_detects = 102;
-			outputData = flag_detects;
-			return outputData;
+			DetWink = WinkDetect(pointX, pointY,command,StandardWink);
+			DetYaw =  YawDetect(pointY, command, StandardWink);
+			DetNode = NodeDetect(pointX, pointY, command, StandardNode);
+			flag_detects = CommandReturn(DetWink, DetYaw, DetNode);
+
+			// outputData = flag_detects;
+			return flag_detects;
 
 		};
 
@@ -208,7 +208,6 @@ int Detect::reciver(std::vector<returnVector> return_vector) {
 		command = flag_detect1;
 		//timestamp_detects = return_vector[0].timestamps; 这里我已不需要时间戳
 		shapesVector_detects = return_vector[0].shapesVectors;
-		cout<< command <<endl;
 		return PointToMatrix(shapesVector_detects[0]);
 		// cout<< shapesVector_detects[0].part(36).x()<<endl;
 }

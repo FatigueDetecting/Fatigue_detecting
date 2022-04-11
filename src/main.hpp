@@ -33,3 +33,4 @@ struct returnVector
     std::vector<dlib::full_object_detection> shapesVectors;
 };
 std::vector<returnVector> return_vector;
+int status = -1;
