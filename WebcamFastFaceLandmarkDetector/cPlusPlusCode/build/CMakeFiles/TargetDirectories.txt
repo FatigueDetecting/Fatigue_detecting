@@ -1,6 +1,0 @@
-/home/pi/Desktop/WebcamFastFaceLandmarkDetector/cPlusPlusCode/build/CMakeFiles/rebuild_cache.dir
-/home/pi/Desktop/WebcamFastFaceLandmarkDetector/cPlusPlusCode/build/CMakeFiles/edit_cache.dir
-/home/pi/Desktop/WebcamFastFaceLandmarkDetector/cPlusPlusCode/build/CMakeFiles/fastFaceLandmarkDetection.dir
-/home/pi/Desktop/WebcamFastFaceLandmarkDetector/cPlusPlusCode/build/dlib_build/CMakeFiles/rebuild_cache.dir
-/home/pi/Desktop/WebcamFastFaceLandmarkDetector/cPlusPlusCode/build/dlib_build/CMakeFiles/edit_cache.dir
-/home/pi/Desktop/WebcamFastFaceLandmarkDetector/cPlusPlusCode/build/dlib_build/CMakeFiles/dlib.dir

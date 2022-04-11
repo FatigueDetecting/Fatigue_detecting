@@ -31,6 +31,8 @@ int main() {
                 deserialize("shape_predictor_68_face_landmarks.dat") >> pos_modle;
 
                 //object cap
+                //VideoCapture cap("testvideo.h264");
+                //string url = R"(http://103.199.161.254/Content/bbcworld/Live/Channel(BBCworld)/index.m3u8)";
                 VideoCapture cap(0);
                 cap.set(CAP_PROP_FRAME_WIDTH,320.0);
                 cap.set(CAP_PROP_BUFFERSIZE,1);
