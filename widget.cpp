@@ -3,10 +3,8 @@
 
 
 QImage Mat2QImage(cv::Mat& image)
-
 {
     QImage img;
-
     if (image.channels()==3) {
         cvtColor(image, image, CV_BGR2RGB);
         img = QImage((const unsigned char *)(image.data), image.cols, image.rows,
@@ -61,8 +59,11 @@ Widget::Widget(QWidget *parent)
         detectionFLAG.push_back(false);
     }
 
+    capture.set(CAP_PROP_BUFFERSIZE,0);
+    capture.set(CAP_PROP_FRAME_WIDTH, 320.0);
+    capture.set(CAP_PROP_FRAME_HEIGHT, 240.0);
 
-    connect(timer,&QTimer::timeout,this,&Widget::readFrame);
+    connect(timer,&QTimer::timeout,this,&Widget::showFrame);
     connect(ui->pushButton,&QPushButton::clicked,this,&Widget::openCamara);
     connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(push_button_2_clicked()));
     connect(ui->pushButton_4,SIGNAL(clicked()),this,SLOT(push_button_4_clicked()));
@@ -99,6 +100,7 @@ void Widget::onStateChanged(int state)
 
 Widget::~Widget()
 {
+
     delete ui;
     delete timer;
     delete image;
@@ -111,11 +113,19 @@ void Widget::openCamara()
         if(available_cams.size()>0)
         {
             int index = ui->comboBox->currentText().split("_")[1].toInt();
+
             capture.open(index);
+
+            std::thread tw1(&faceGet::frame_write, ca,std::ref(capture), std::ref(buff));
+            tw1.detach();
+            std::thread tr1(&faceGet::frame_read, ca, std::ref(buff),1, std::ref(capture), std::ref(frame), std::ref(shap1));
+            tr1.detach();
+
             timer->start(10);
             ui->pushButton->setText(QString("Close Camera"));
             CAMERA_OPENED = true;
             frame_cnt = 0;
+
         }
         else
         {
@@ -135,8 +145,8 @@ void Widget::openCamara()
         if(result==QMessageBox::Yes)
         {
             qDebug()<<"turn off the camera";
-            capture.release();
             timer->stop();
+            capture.release();
             ui->pushButton->setText(QString("Open Camera"));
             CAMERA_OPENED = false;
             DETECTION_Flag = false;
@@ -153,38 +163,47 @@ void Widget::openCamara()
 
 }
 
-void Widget::readFrame()
+void Widget::showFrame()
 {
-    if(capture.isOpened())
-    {
-        capture.read(frame);
-        //deal with frame
-        if(DETECTION_Flag)
-        {
-            if(frame_cnt%SKIP_FRAMES==0)
-            {
-                QVector<bool> result = detection(frame,detectionFLAG);
-                if(result[0]==true) {
-                    ui->textEdit->setText(QString("yaw detected"));
-                }
-                if(result[1]==true)
-                {
-                    ui->textEdit->setText(QString("closed eye detected"));
-                }
-                if(result[2]==true)
-                {
-                    ui->textEdit->setText(QString("nod detected"));
-                }
-            }
 
-        }
-        QImage show_image = Mat2QImage(frame);
-        ui->label_2->setPixmap(QPixmap::fromImage(show_image));
-    }
-    else
-    {
-        qDebug()<<"Camera not open";
-    }
+     int status = ca.returnFrame(std::ref(shap1),9);
+     cout<<status<<endl;
+     QDateTime time = QDateTime::currentDateTime();
+     Mat frame2 = frame.clone();
+     QImage show_image = Mat2QImage(frame2);
+     ui->label_2->setPixmap(QPixmap::fromImage(show_image));
+
+//    if(capture.isOpened())
+//    {
+//        capture.read(frame);
+//        //deal with frame
+//        if(DETECTION_Flag)
+//        {
+//            if(frame_cnt%SKIP_FRAMES==0)
+//            {
+//                QVector<bool> result = detection(frame,detectionFLAG);
+//                if(result[0]==true) {
+//                    ui->textEdit->setText(QString("yaw detected"));
+//                }
+//                if(result[1]==true)
+//                {
+//                    ui->textEdit->setText(QString("closed eye detected"));
+//                }
+//                if(result[2]==true)
+//                {
+//                    ui->textEdit->setText(QString("nod detected"));
+//                }
+//            }
+
+//        }
+
+
+
+//    }
+//    else
+//    {
+//        qDebug()<<"Camera not open";
+//    }
 
 }
 

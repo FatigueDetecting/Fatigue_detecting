@@ -19,8 +19,11 @@
 #include <opencv2/core/types_c.h>
 #include <opencv2/imgproc/imgproc_c.h>
 #include <opencv2/videoio.hpp>
-
+#include <thread>
+#include <QDateTime>
+#include "CRingBuffer.h"
 #include "detection.h"
+#include "faceget.h"
 
 #define SKIP_FRAMES 2
 
@@ -36,7 +39,8 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
-    cv::Mat    frame;
+    cv::Mat frame;
+    faceGet ca;
     QVector<bool> detectionFLAG;
 
 private:
@@ -55,7 +59,7 @@ public slots:
     void push_button_2_clicked();
     void push_button_4_clicked();
     void openCamara();
-    void readFrame();
+    void showFrame();
     void onStateChanged(int state);
 
 
