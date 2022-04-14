@@ -6,12 +6,6 @@
 [![license](https://img.shields.io/github/license/:user/:repo.svg)](LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-![Contributors](https://img.shields.io/github/contributors/RTEP-zero-to-one/Fatigue_detecting?style=for-the-badge)
-![GitHub Repo stars](https://img.shields.io/github/stars/RTEP-zero-to-one/Fatigue_detecting?style=for-the-badge)
-![Issues](https://img.shields.io/github/issues-raw/RTEP-zero-to-one/Fatigue_detecting?style=for-the-badge)
-![Apache-2.0 License](https://img.shields.io/badge/LICENSE-Apache--2.0-yellowgreen?style=for-the-badge)
-
-
 ## Table of Contents
 
 - [Background](#background)
@@ -26,8 +20,6 @@
 
 The increasing number of traffic accidents and the casualties and property losses caused by them have gradually become a common concern of the society.  
 How to detect the fatigue state of drivers efficiently and accurately is of great social significance to effectively protect the life and property safety of drivers and other related personnel.
-
-### Any optional sections
 
 ## Install
 
