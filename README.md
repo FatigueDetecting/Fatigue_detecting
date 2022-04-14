@@ -1,7 +1,7 @@
 # Fatigue_detecting
 
 <div align="center">
-<img src="assets/logo.jpg" alt="logo" width="200" div al ign=center />
+<img src="assets/logo.png" alt="logo" width="200" div al ign=center />
 </div>
 [![license](https://img.shields.io/github/license/:user/:repo.svg)](LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
