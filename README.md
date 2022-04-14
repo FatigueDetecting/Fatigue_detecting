@@ -1,18 +1,19 @@
-# Fatigue_detecting
-
 <div align="center">
-<img src="assets/logo.png" alt="logo" width="200" div al ign=center />
+<img src="assets/logo.png" width = "20%">
 </div>
+<h1 align="center">Fatigue_detecting</h1>
+
 [![license](https://img.shields.io/github/license/:user/:repo.svg)](LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-This is an example file with maximal choices selected.
+![Contributors](https://img.shields.io/github/contributors/RTEP-zero-to-one/Fatigue_detecting?style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/RTEP-zero-to-one/Fatigue_detecting?style=for-the-badge)
+![Issues](https://img.shields.io/github/issues-raw/RTEP-zero-to-one/Fatigue_detecting?style=for-the-badge)
+![Apache-2.0 License](https://img.shields.io/badge/LICENSE-Apache--2.0-yellowgreen?style=for-the-badge)
 
-This is a long description.
 
 ## Table of Contents
 
-- [Security](#security)
 - [Background](#background)
 - [Install](#install)
 - [Usage](#usage)
@@ -20,11 +21,11 @@ This is a long description.
 - [Contributing](#contributing)
 - [License](#license)
 
-## Security
-
-### Any optional sections
 
 ## Background
+
+The increasing number of traffic accidents and the casualties and property losses caused by them have gradually become a common concern of the society.  
+How to detect the fatigue state of drivers efficiently and accurately is of great social significance to effectively protect the life and property safety of drivers and other related personnel.
 
 ### Any optional sections
 
