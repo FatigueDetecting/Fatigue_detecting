@@ -48,7 +48,7 @@ How to detect the fatigue state of drivers efficiently and accurately is of grea
 
 - [Opencv 4.5.1](https://opencv.org/opencv-4-5-1/)
 - [Dlib](http://dlib.net/)
-- Qt creator
+- [Qt creator](https://www.qt.io/product/development-tools)
 - [libfacedetection](https://github.com/ShiqiYu/libfacedetection)
   
 ## Install
