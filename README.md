@@ -51,13 +51,7 @@ Note: The `license` badge image link at the top of this file should be updated w
 
 ## Contributing
 
-See [the contributing file](CONTRIBUTING.md)!
 
-PRs accepted.
-
-Small note: If editing the Readme, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
-
-### Any optional sections
 
 ## License
 
@@ -68,6 +62,7 @@ Small note: If editing the Readme, please conform to the [standard-readme](https
 - 2.NCNN Finish
 - 3.PFLD-NCNN openvino
 - 4.hyper thread  Finish
+
 Build Raspberry Pi 4b
 - environment
   1. After testing, the fulleye version cannot detect the camera well when using opencv, so the bluster version is used.
