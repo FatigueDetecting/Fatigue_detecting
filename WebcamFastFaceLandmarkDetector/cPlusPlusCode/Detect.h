@@ -31,7 +31,7 @@ class Detect
 		//int timestamp_detects;
 
 		
-		//眨眼标准 command == 0为标定模式 command == 0为测试模式
+		//眨眼标准 command == 0为标定模式 
 		float WinkStandard(double pointX[], double pointY[], int command) {
 			if (command == 0) {
 				while (NumWink < 5) {
@@ -187,9 +187,9 @@ class Detect
 				pointY[num] = inputData.shapesVectors.part(num).y();
 			}
 
-			StandardWink = WinkStandard(pointX, pointY, command);
-			StandardYaw = YawStandard(pointY,command);
-			StandardNode = NodeStandard(pointX,pointY, command);
+			//StandardWink = WinkStandard(pointX, pointY, command);
+			//StandardYaw = YawStandard(pointY,command);
+			//StandardNode = NodeStandard(pointX,pointY, command);
 			DetWink = WinkDetect(pointX, pointY,command,StandardWink);
 			DetYaw =  YawDetect(pointY, command, StandardWink);
 			DetNode = NodeDetect(pointX, pointY, command, StandardNode);
@@ -197,8 +197,19 @@ class Detect
 			flag_detects = CommandReturn(DetWink, DetYaw, DetNode);
 			outputData = flag_detects;
 			return outputData;
-
 		};
+
+		; int  Calibration(returnVector inputData) {
+			command = inputData.flags;
+			for (int num = 0; num < 68; num++) {
+				pointX[num] = inputData.shapesVectors.part(num).x();
+				pointY[num] = inputData.shapesVectors.part(num).y();
+			}
+			StandardWink = WinkStandard(pointX, pointY, command);
+			StandardYaw = YawStandard(pointY, command);
+			StandardNode = NodeStandard(pointX, pointY, command);
+			return 8;			//8对应为标定结束
+		}
 			
 };
 
