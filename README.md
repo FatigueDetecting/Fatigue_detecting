@@ -1,5 +1,5 @@
 <div align="center">
-<img src="assets/logo.png" width = "20%">
+<img src="assets/logo1.png" width = "20%">
 </div>
 <h1 align="center">Fatigue_detecting</h1>
 
