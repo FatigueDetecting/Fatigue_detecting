@@ -199,7 +199,7 @@ class Detect
 			return outputData;
 		};
 
-		; int  Calibration(returnVector inputData) {
+		int  Calibration(returnVector inputData) {
 			command = inputData.flags;
 			for (int num = 0; num < 68; num++) {
 				pointX[num] = inputData.shapesVectors.part(num).x();
