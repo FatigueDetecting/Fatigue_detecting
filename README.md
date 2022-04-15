@@ -40,7 +40,8 @@ How to detect the fatigue state of drivers efficiently and accurately is of grea
 ## Hardware
   
  <div align="center">
-<img src="assets/camera.jpg" width = "20%">
+<img src="assets/camera.jpg" width = "20%"> OV5647
+<img src="assets/pi.png" width = "20%"> RaspberryPi 4B
 </div>
   
 ## Software
