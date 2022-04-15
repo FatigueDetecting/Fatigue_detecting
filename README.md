@@ -24,7 +24,7 @@
 ## Table of Contents
 
 - [Background](#background)
-- [Algorithm](#Algorithm)
+- [Hardware](#hardware)
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
@@ -62,29 +62,7 @@ This module depends upon a knowledge of [Markdown]().
 
 ## Usage
 
-```
-```
-
-Note: The `license` badge image link at the top of this file should be updated with the correct `:user` and `:repo`.
-
-### Any optional sections
-
-## API
-
-### Any optional sections
-
-## More optional sections
-
-## Contributing
-
-
-
-## License
-
-[MIT © Richard McRichface.](../LICENSE)
-
-
-- 1.HOG Finish
+  - 1.HOG Finish
 - 2.NCNN Finish
 - 3.PFLD-NCNN openvino
 - 4.hyper thread  Finish
@@ -132,6 +110,33 @@ Build Raspberry Pi 4b
   1. >```git clone https://github.com/goodtft/LCD-show.git```
   2. >``` chmod -R 755 LCD-show```
   3. >```cd LCD-show/```
+```
+```
+
+Note: The `license` badge image link at the top of this file should be updated with the correct `:user` and `:repo`.
+
+### Any optional sections
+
+## API
+
+### Any optional sections
+
+## More optional sections
+
+## Contributors
+- [Rui Sun(2664218S)](https://github.com/SR9898)
+- [Yenuo Liu(2706420L)](https://github.com/pateral)
+- [Ming Deng(2675614D)](https://github.com/MingDengEason)
+- [Ruixian Hong(2646699H)](https://github.com/smallssnow)
+
+
+
+## License
+
+[MIT © Richard McRichface.](../LICENSE)
+
+
+
 
 
 
