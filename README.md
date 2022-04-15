@@ -3,16 +3,28 @@
 </div>
 <h1 align="center">Fatigue_detecting</h1>
 
+<div align="center">
+  
 ![contributors](https://img.shields.io/github/contributors/FatigueDetecting/Fatigue_detecting?style=flat-square)
 [![license](https://img.shields.io/github/license/:user/:repo.svg)](LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 ![Issues](https://img.shields.io/github/issues/FatigueDetecting/Fatigue_detecting?style=flat-square)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fdengmin17290037)](https://twitter.com/dengmin17290037)
 
-
+</div>
+<div align="center">
+  
+![](https://img.shields.io/badge/OS-Debian-informational?style=plastic&color=1f425f)
+![](https://img.shields.io/badge/Hardware-RaspberryPi4-informational?style=plastic&color=1f425f)
+![](https://img.shields.io/badge/Hardware-Sensors-informational?style=plastic&logo=<LOGO_NAME>&logoColor=white&color=1f425f)
+![](https://img.shields.io/badge/Code-C++-informational?style=plastic&logo=<LOGO_NAME>&logoColor=white&color=1f425f)
+  
+</div>
+  
 ## Table of Contents
 
 - [Background](#background)
+- [Algorithm](#Algorithm)
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
@@ -25,6 +37,14 @@
 The increasing number of traffic accidents and the casualties and property losses caused by them have gradually become a common concern of the society.  
 How to detect the fatigue state of drivers efficiently and accurately is of great social significance to effectively protect the life and property safety of drivers and other related personnel.
 
+## Algorithm
+-   
+## Software
+
+- [Opencv 4.5.1](https://opencv.org/opencv-4-5-1/)
+- [Dlib 4.5.1](http://dlib.net/)
+- Qt creator
+- 
 ## Install
 
 This module depends upon a knowledge of [Markdown]().
