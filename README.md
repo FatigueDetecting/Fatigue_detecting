@@ -38,13 +38,16 @@ The increasing number of traffic accidents and the casualties and property losse
 How to detect the fatigue state of drivers efficiently and accurately is of great social significance to effectively protect the life and property safety of drivers and other related personnel.
 
 ## Algorithm
--   
+- ringbuffer
+- PFLD-NCNN  
+  
 ## Software
 
 - [Opencv 4.5.1](https://opencv.org/opencv-4-5-1/)
-- [Dlib 4.5.1](http://dlib.net/)
+- [Dlib](http://dlib.net/)
 - Qt creator
-- 
+- [libfacedetection](https://github.com/ShiqiYu/libfacedetection)
+  
 ## Install
 
 This module depends upon a knowledge of [Markdown]().
