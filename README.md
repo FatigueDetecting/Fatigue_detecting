@@ -36,6 +36,9 @@
 
 The increasing number of traffic accidents and the casualties and property losses caused by them have gradually become a common concern of the society.  
 How to detect the fatigue state of drivers efficiently and accurately is of great social significance to effectively protect the life and property safety of drivers and other related personnel.
+<div align="center">
+<img src="https://user-images.githubusercontent.com/92716961/163671711-a983b795-c979-4407-815b-da5e890c7f0b.png" width = "50%">
+</div>
 
 ## Hardware
   
