@@ -28,7 +28,7 @@
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
-- [Contributing](#contributing)
+- [Contributors](#contributors)
 - [License](#license)
 
 
