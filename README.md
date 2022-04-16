@@ -6,7 +6,7 @@
 <div align="center">
   
 ![contributors](https://img.shields.io/github/contributors/FatigueDetecting/Fatigue_detecting?style=flat-square)
-[![license](https://img.shields.io/github/license/:user/:repo.svg)](LICENSE)
+[![license](https://img.shields.io/github/license/FatigueDetecting/Fatigue_detecting?style=flat-square)](https://github.com/FatigueDetecting/Fatigue_detecting/blob/main/LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 ![Issues](https://img.shields.io/github/issues/FatigueDetecting/Fatigue_detecting?style=flat-square)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fdengmin17290037)](https://twitter.com/dengmin17290037)
