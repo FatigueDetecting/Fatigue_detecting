@@ -23,8 +23,7 @@
   <p align="center">
     <a href="https://github.com/FatigueDetecting/Fatigue_detecting/wiki"><strong>View Demo    </strong></a>
     <a href="https://github.com/FatigueDetecting/Fatigue_detecting/wiki"><strong>View Viki    </strong></a>
-   
-     </br> 
+    </br> 
     <a href="https://github.com/FatigueDetecting/Fatigue_detecting/issues">Report Bug</a>
     <a href="https://github.com/FatigueDetecting/Fatigue_detecting/issues">Request Feature</a>
 </p>
