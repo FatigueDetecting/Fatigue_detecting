@@ -47,6 +47,8 @@ How to detect the fatigue state of drivers efficiently and accurately is of grea
 <img src="https://user-images.githubusercontent.com/92716961/163671711-a983b795-c979-4407-815b-da5e890c7f0b.png" width = "50%">
 </div>
 
+This project uses night vision cameras to monitor the driver's status in real time. The system recognises and alerts the driver when they are yawning, nodding and blinking frequently.
+
 ## Hardware
   
  <div align="center">
