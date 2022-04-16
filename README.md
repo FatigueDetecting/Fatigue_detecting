@@ -20,6 +20,14 @@
 ![](https://img.shields.io/badge/Code-C++-informational?style=plastic&logo=<LOGO_NAME>&logoColor=white&color=1f425f)
   
 </div>
+  <p align="center">
+    <a href="https://github.com/FatigueDetecting/Fatigue_detecting/wiki"><strong>View Demo    </strong></a>
+    <a href="https://github.com/FatigueDetecting/Fatigue_detecting/wiki"><strong>View Viki    </strong></a>
+   
+     </br> 
+    <a href="https://github.com/FatigueDetecting/Fatigue_detecting/issues">Report Bug</a>
+    <a href="https://github.com/FatigueDetecting/Fatigue_detecting/issues">Request Feature</a>
+</p>
   
 ## Table of Contents
 
