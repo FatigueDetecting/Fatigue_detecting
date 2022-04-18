@@ -65,7 +65,22 @@ This project uses night vision cameras to monitor the driver's status in real ti
   
 ## Install
 
-This module depends upon a knowledge of [Markdown]().
+1. Clone this repository
+```
+git clone https://github.com/FatigueDetecting/Fatigue_detecting.git
+```
+2. Install Dependency 
+```
+
+```
+3. Build
+```
+
+```
+4. Run
+```
+
+```
 
 ```
 ```
