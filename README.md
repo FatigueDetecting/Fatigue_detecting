@@ -85,7 +85,6 @@ git clone https://github.com/FatigueDetecting/Fatigue_detecting.git
 ```
 ```
 
-### Any optional sections
 
 ## Usage
 
