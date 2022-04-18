@@ -34,7 +34,6 @@
 - [Hardware](#hardware)
 - [Install](#install)
 - [Usage](#usage)
-- [API](#api)
 - [Contributors](#contributors)
 - [License](#license)
 
@@ -87,7 +86,7 @@ git clone https://github.com/FatigueDetecting/Fatigue_detecting.git
 
 
 ## Usage
-
+Demo
 
 ## Contributors
 - [Rui Sun(2664218S)](https://github.com/SR9898)
@@ -100,9 +99,3 @@ git clone https://github.com/FatigueDetecting/Fatigue_detecting.git
 ## License
 
 [MIT © Richard McRichface.](../LICENSE)
-
-
-
-
-
-
