@@ -89,10 +89,12 @@ git clone https://github.com/FatigueDetecting/Fatigue_detecting.git
 Demo
 
 ## Contributors
-- [Rui Sun(2664218S)](https://github.com/SR9898)
-- [Yenuo Liu(2706420L)](https://github.com/pateral)
-- [Ming Deng(2675614D)](https://github.com/MingDengEason)
-- [Ruixian Hong(2646699H)](https://github.com/smallssnow)
+- [Ming Deng(2675614D)](https://github.com/MingDengEason)Project management and coordination, User research, Basic Raspberry Pi configuration debugging
+- [Ruixian Hong(2646699H)](https://github.com/smallssnow)Basic Raspberry Pi configuration debugging, Functional testing,Real-time face recognition and feature point extraction
+- [Yenuo Liu(2706420L)](https://github.com/pateral)Fatigue detection algorithms, Functional testing
+- [Rui Sun(2664218S)](https://github.com/SR9898) Qt interface design, Project integration, Functional testing
+
+
 
 
 
