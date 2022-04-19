@@ -78,8 +78,6 @@ cd FatigueDetect
 ./FatigueDetect
 ```
 
-```
-```
 
 
 ## Usage
