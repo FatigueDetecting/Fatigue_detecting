@@ -68,17 +68,14 @@ This project uses night vision cameras to monitor the driver's status in real ti
 ```
 git clone https://github.com/FatigueDetecting/Fatigue_detecting.git
 ```
-2. Install Dependency 
+2. Unzip the files
 ```
-
+tar zxvf FatigueDetect.tar.gz
 ```
-3. Build
+3.  Run
 ```
-
-```
-4. Run
-```
-
+cd FatigueDetect
+./FatigueDetect
 ```
 
 ```
