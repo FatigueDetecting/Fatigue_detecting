@@ -22,7 +22,6 @@
 #include <thread>
 #include <QDateTime>
 #include "CRingBuffer.h"
-#include "detection.h"
 #include "faceget.h"
 
 #define SKIP_FRAMES 2
@@ -50,6 +49,7 @@ private:
     cv::VideoCapture capture;
     bool CAMERA_OPENED;
     bool DETECTION_Flag;
+    bool DEMARCATE_Flag;
     int MAX_NUMS = 10;
     void detectAvailableCameras(void);
     QVector<int> available_cams; 

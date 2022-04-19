@@ -64,8 +64,9 @@ class Detect
         int reciver(std::vector<returnVector> vector);
         int flag_detect1;
         //收到结构体，并输出状态
-        int PointToMatrix(dlib::full_object_detection inputData);
-
+        int PointToMatrix(dlib::full_object_detection inputData,int flag);
+        int  Calibration(returnVector inputData);
+        int is_calibration =0;
 };
 
 #endif // DETECT_H

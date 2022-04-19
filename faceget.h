@@ -17,7 +17,7 @@
 #include "parallelvideocapture.h"
 #include <stdio.h>
 #include <time.h>
-#include "libfacedetection/facedetectcnn.h"
+#include "facedetectcnn.h"
 #include <thread>
 #include <chrono>
 #include <stdlib.h>
@@ -26,6 +26,7 @@ using namespace cv;
 using namespace dlib;
 extern CRingBuffer<Mat> buff;
 extern CRingBuffer<dlib::full_object_detection> shap1;
+extern int thread_state;
 
 class faceGet
 {
