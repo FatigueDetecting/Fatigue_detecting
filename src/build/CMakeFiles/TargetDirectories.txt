@@ -1,0 +1,6 @@
+/Users/mac/Desktop/github/Fatigue_detecting/src/build/CMakeFiles/pfld_ncnn.dir
+/Users/mac/Desktop/github/Fatigue_detecting/src/build/CMakeFiles/edit_cache.dir
+/Users/mac/Desktop/github/Fatigue_detecting/src/build/CMakeFiles/rebuild_cache.dir
+/Users/mac/Desktop/github/Fatigue_detecting/src/build/dlib_build/CMakeFiles/dlib.dir
+/Users/mac/Desktop/github/Fatigue_detecting/src/build/dlib_build/CMakeFiles/edit_cache.dir
+/Users/mac/Desktop/github/Fatigue_detecting/src/build/dlib_build/CMakeFiles/rebuild_cache.dir
