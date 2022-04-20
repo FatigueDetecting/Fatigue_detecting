@@ -77,7 +77,38 @@ cd FatigueDetect
 ```
 ./FatigueDetect
 ```
+
 If you want to edit the source code，you could install Qt creator and open UIproject.pro to edit.
+
+Download and configure QT5
+1. Update
+```
+sudo apt-get update
+sudo apt-get upgrade
+```
+2. Prepare to install
+```
+sudo apt-get install qt5-default
+sudo apt-get install qtcreator
+```
+3. Configure
+ ```
+a)Open Qt creator
+ ```
+ ```
+b)Configure the compiler: menu bar->Tools->Options->Build&Run
+ Select Compilers
+ Click add->GCC Select Add C  
+ Click Browser
+ Select /usr/bin/gcc in Compiler Path and click Apply
+ Similarly, adding c++ is the same operation, the only difference is that c++ needs to add g++ instead of gcc.
+```
+4. Configure libfacedetection：
+ ```
+ a)Add the following four files to the header and source respectively: facedetectcnn-model.cpp, facedetectcnn-data.cpp, facedetectcnn.cpp and facedetectcnn.h
+ b)Click make to compile. After compiling, open the directory to find the newly generated facedetection_export.h file and import the header.
+ c)Add on the fourth line: #define FACEDETECTION_EXPORT and recompile
+ ```
 
 
 ## Usage
