@@ -1,0 +1,41 @@
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+ld: library not found for -lSystem
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+ld: library not found for -lc++
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+
+
+Determining if the function sgetrf_single exists failed with the following output:
+Change Dir: /Users/mac/Desktop/github/Fatigue_detecting/src/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_525f4/fast && /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_525f4.dir/build.make CMakeFiles/cmTC_525f4.dir/build
+Building C object CMakeFiles/cmTC_525f4.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgetrf_single -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_525f4.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_525f4.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_525f4.dir/CheckFunctionExists.c.o -c /usr/local/Cellar/cmake/3.23.0/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_525f4
+/usr/local/Cellar/cmake/3.23.0/bin/cmake -E cmake_link_script CMakeFiles/cmTC_525f4.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sgetrf_single -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_525f4.dir/CheckFunctionExists.c.o -o cmTC_525f4  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib/libcblas.tbd 
+Undefined symbols for architecture x86_64:
+  "_sgetrf_single", referenced from:
+      _main in CheckFunctionExists.c.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[2]: *** [cmTC_525f4] Error 1
+make[1]: *** [cmTC_525f4/fast] Error 2
+
+
+
