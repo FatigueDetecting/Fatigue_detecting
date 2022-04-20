@@ -69,16 +69,15 @@ This project uses night vision cameras to monitor the driver's status in real ti
 ```
 git clone https://github.com/FatigueDetecting/Fatigue_detecting.git
 ```
-2. Unzip the files
+2. FatigueDetect path
 ```
-tar zxvf FatigueDetect.tar.gz
+cd FatigueDetect
 ```
 3.  Run
 ```
-cd FatigueDetect
 ./FatigueDetect
 ```
-
+If you want to edit the source code，you could install Qt creator and open UIproject.pro to edit.
 
 
 ## Usage
