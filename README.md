@@ -82,7 +82,7 @@ cd FatigueDetect
 
 
 ## Usage
-Demo
+![image](https://user-images.githubusercontent.com/92716961/164130544-5d8b2118-ff3c-43ec-b3ac-7c350f6932a4.png)
 
 ## Contributors
 - [Ming Deng(2675614D)](https://github.com/MingDengEason)Project management and coordination, User research, Basic Raspberry Pi configuration debugging
