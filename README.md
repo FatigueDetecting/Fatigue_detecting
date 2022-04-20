@@ -22,7 +22,7 @@
   
 </div>
   <p align="center">
-    <a href="https://github.com/FatigueDetecting/Fatigue_detecting/wiki"><strong>View Demo    </strong></a>
+    <a href="https://www.youtube.com/watch?v=6-GsbKH-6_U&t=4s"><strong>View Demo    </strong></a>
     <a href="https://github.com/FatigueDetecting/Fatigue_detecting/wiki"><strong>View Viki    </strong></a>
     </br> 
     <a href="https://github.com/FatigueDetecting/Fatigue_detecting/issues">Report Bug</a>
