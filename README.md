@@ -9,6 +9,7 @@
 [![license](https://img.shields.io/github/license/FatigueDetecting/Fatigue_detecting?style=flat-square)](https://github.com/FatigueDetecting/Fatigue_detecting/blob/main/LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 ![Issues](https://img.shields.io/github/issues/FatigueDetecting/Fatigue_detecting?style=flat-square)
+![Youtube](https://img.shields.io/youtube/channel/views/UCqKJIfqUoB7yAH-tP-y33YQ?style=social)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fdengmin17290037)](https://twitter.com/dengmin17290037)
 
 </div>
