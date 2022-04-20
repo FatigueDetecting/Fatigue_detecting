@@ -112,7 +112,7 @@ b)Configure the compiler: menu bar->Tools->Options->Build&Run
 
 
 ## Usage
-![image](https://user-images.githubusercontent.com/92716961/164130544-5d8b2118-ff3c-43ec-b3ac-7c350f6932a4.png)
+![21f92bcae5e66c8b70ea426d8f52901](https://user-images.githubusercontent.com/92716961/164258143-bd47c84a-e404-4e59-bde7-07a5a74b52ea.png)
 
 ## Contributors
 - [Ming Deng(2675614D)](https://github.com/MingDengEason)Project management and coordination, User research, Basic Raspberry Pi configuration debugging
