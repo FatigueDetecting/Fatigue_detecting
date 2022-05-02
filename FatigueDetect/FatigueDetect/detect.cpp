@@ -162,7 +162,7 @@ int Detect::CommandReturn(int DetWink, int DetYaw, int DetNode) {
 
 
 
-        //收到结构体，并输出状态
+        //Receive the structure and output the status
 int Detect::PointToMatrix(dlib::full_object_detection inputData,int command) {
     cout << "start-------------------"<<endl;
 
@@ -216,7 +216,7 @@ int Detect::reciver(std::vector<returnVector> return_vector) {
       cout<< "---------------------"<<endl;
         flag_detect1 = return_vector[0].flags;
         command = flag_detect1;
-        //timestamp_detects = return_vector[0].timestamps; 这里我已不需要时间戳
+        //timestamp_detects = return_vector[0].timestamps; 
         shapesVector_detects = return_vector[0].shapesVectors;
         return PointToMatrix(shapesVector_detects[0], command);
         // cout<< shapesVector_detects[0].part(36).x()<<endl;
