@@ -8,7 +8,7 @@ const int bStart = 1;
 const int sizes = 20;
 const int scale = 130;
 
-//线程状态  0 未打开摄像头  1 打开摄像头
+//Thread status 0 No camera on 1 Camera on
 int thread_state = 0;
 
 time_t timestamp;
@@ -302,9 +302,9 @@ std::vector<returnVector> faceGet::sendFace4Test(CRingBuffer<dlib::full_object_d
         return_vector.push_back(rv);
         // cout<<"x36:"<<shapesVector[0].part(36).x()<<endl;
         ////return timeStamp+shape+flag;
-        // std::cout << return_vector.timestamps << std::endl;//毫秒级时间戳
-        // std::cout << "\n" << std::endl;//毫秒级时间戳
-        // std::cout << return_vector[0].shapesVectors[0].part(36).x()<< std::endl;//毫秒级时间戳
+        // std::cout << return_vector.timestamps << std::endl;//Millisecond timestamps
+        // std::cout << "\n" << std::endl;//Millisecond timestamps
+        // std::cout << return_vector[0].shapesVectors[0].part(36).x()<< std::endl;
         cout << "shap1_length:" << shape1_length << endl;
         cout << "shapesVector_length:" << shapesVector.size() << endl;
         // de.reciver(return_vector);
