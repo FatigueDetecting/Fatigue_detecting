@@ -43,27 +43,27 @@ class Detect
             std::vector<dlib::full_object_detection> shapesVectors;
         };
         int flag_detects;
-        //眨眼标准 command == 0为标定模式 command == 0为测试模式
+        //Wink Standard 
         float WinkStandard(double pointX[], double pointY[], int command);
-        //哈欠标准
+        //Yaw Standard
         float YawStandard(double pointY[], int command);
-        //点头标准
+        //Nod Standard
         float NodeStandard(double pointX[], double pointY[], int command) ;
-        //眨眼检测(正在修改)    输出0意味着为正常， 如果输出为1则意味着为疲劳
+        //Wink detect    0 represents not fatigue， 1 means fatigue, if the fatigue happens, the output will hold on 1
         int WinkDetect(double pointX[], double pointY[], int command, float StandardWink);
-        //哈欠检测  ---------- 疲劳现象消失后，均会回归0
+        //Yaw Detect     0 represents not fatigue， 1 means fatigue
         int YawDetect(double pointY[], float StandardYaw, int command) ;
-        //点头检测
+        //Nod Detect     0 represents not fatigue， 1 means fatigue
         int NodeDetect(double pointX[], double pointY[], int command, float StandardNode);
         int CommandReturn(int DetWink, int DetYaw, int DetNode);
     public:
-        //输入的结构体：FLag,，68点矩阵
+       
         // returnVector inputData;
         int outputData;
         std::vector<dlib::full_object_detection> shapesVector_detects;
         int reciver(std::vector<returnVector> vector);
         int flag_detect1;
-        //收到结构体，并输出状态
+        //recieve the struct and output the state
         int PointToMatrix(dlib::full_object_detection inputData,int flag);
         int  Calibration(returnVector inputData);
         int is_calibration =0;
