@@ -36,7 +36,7 @@ public:
 		}
 	}
 
-	//清空环形缓冲区
+	//Emptying the ring buffer
 	void Clear()
 	{
 		std::lock_guard<std::mutex> lock(mtx);
@@ -45,8 +45,8 @@ public:
 		m_nReadPos = 0;
 	}
 
-	//设置环形缓冲区
-	//nSize：缓冲区大小
+	//Setting up the ring buffer
+	//nSize：Buffer size
 	void ReSetBufferSize(unsigned int nSize)
 	{
 		std::lock_guard<std::mutex> lock(mtx);
@@ -70,12 +70,12 @@ public:
 			m_nReadPos = 0;
 		}
 	}
-	//写入数据到环形缓冲区
-	//返回值：写入的数据大小
+	//Write data to ring buffer
+	//Return value: size of data written
 	unsigned int WriteData(const T* pT, unsigned int nSize = 1)
 	{
 		std::lock_guard<std::mutex> lock(mtx);
-		if (nSize > m_nSize - m_nUnreadSize) //缓冲区大小不足时，仅写入最前面的数据
+		if (nSize > m_nSize - m_nUnreadSize) //If the buffer is undersized, only the top data is written
 			nSize = m_nSize - m_nUnreadSize;
 
 		if (nSize > 0)
@@ -87,7 +87,7 @@ public:
 			else
 			{
 				memcpy(&m_pBuffer[m_nWritePos], pT, (m_nSize - m_nWritePos) * sizeof(T));
-				// 如果区域长度-写入下标=剩余长度，而数字长度大于写入区域。
+				// If the area length - write subscript = remaining length and the number length is greater than the write area.
 				if (nSize - (m_nSize - m_nWritePos) > 0)
 					memcpy(m_pBuffer, &pT[m_nSize - m_nWritePos], (nSize - (m_nSize - m_nWritePos)) * sizeof(T));
 			}
@@ -100,9 +100,9 @@ public:
 
 		return nSize;
 	}
-	//从环形缓冲区读取数据
-	//nSize：缓冲区大小
-	//返回值：读取的数据大小
+	//Reading data from the ring buffer
+	//nSize：Buffer size
+	//Return value: size of data read
 	unsigned int ReadData(T* pT, unsigned int nSize = 1)
 	{
 		std::lock_guard<std::mutex> lock(mtx);
@@ -138,14 +138,14 @@ public:
 	}
 
 private:
-	T* m_pBuffer;					//缓冲区
-	unsigned int m_nSize;			//缓冲区大小
+	T* m_pBuffer;					//buffer zone 
+	unsigned int m_nSize;			//buffer size
 
-	unsigned int m_nUnreadSize;		//未读取的数据大小
+	unsigned int m_nUnreadSize;		//Size of unread data
 
-	unsigned int m_nWritePos;		//写入下标
-	unsigned int m_nReadPos;		//读取下标
+	unsigned int m_nWritePos;		//Write to subscript
+	unsigned int m_nReadPos;		//Read subscript
 
-	std::mutex mtx;//线程锁
+	std::mutex mtx;//Thread locks
 };
 #endif // !_CRINGBUFFER_HPP_
